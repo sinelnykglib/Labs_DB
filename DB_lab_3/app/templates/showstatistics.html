@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <style type="text/css">
+    .page-link {
+      background: rgb(255, 255, 255);
+      display: inline-block;
+      padding: 8px 12px;
+      font-size: 11px;
+      font-weight: 600;
+      color: white;
+      text-decoration: none;
+    }
+
+
+    .shine-button {
+      text-decoration: none;
+      display: inline-block;
+      padding: 10px 30px;
+      position: relative;
+      color: #000000;
+      font-size: 11px;
+      font-weight: 600;
+    }
+
+
+    #header {
+      padding: 12px;
+      text-align: left;
+      color: rgb(12, 27, 233);
+      font-size: 20px;
+    }
+
+
+    #header .add-place-button {
+      background: white;
+      padding: 16px 22px;
+      margin: 0;
+      color: #000000;
+      font-size: 11px;
+      font-weight: 800;
+    }
+
+
+    body {
+      background: rgb(250, 250, 250);
+      font-size: 11px;
+      font-weight: 600;
+    }
+
+    </style>
+    <title>Statistics Form</title>
+</head>
+<body>
+    <h3>Statistics Form</h3>
+    <hr/>
+    <form action="{{ url_for('showstatistics') }}" method="POST">
+        {{ form.hidden_tag() }}
+
+        <div style="font-size: 14px; color: rgb(0, 29, 194)">
+            {{ form.regname.label }} <br>
+            {{ form.regname(class="registration_form_fields", multiple="multiple") }}
+        </div>
+        {% if form.regname.errors %}
+            <ul>{% for error in form.regname.errors %}<li>{{ error }}</li>{% endfor %}</ul>
+        {% endif %}
+
+        <div style="font-size: 14px; color: rgb(0, 29, 194)">
+            {{ form.examyear.label }} <br>
+            {{ form.examyear(class="registration_form_fields") }}
+        </div>
+        {% if form.examyear.errors %}
+            <ul>{% for error in form.examyear.errors %}<li>{{ error }}</li>{% endfor %}</ul>
+        {% endif %}
+
+        <div style="font-size: 14px; color: rgb(0, 29, 194)">
+            {{ form.subjectname.label }} <br>
+            {{ form.subjectname(class="registration_form_fields") }}
+        </div>
+        {% if form.subjectname.errors %}
+            <ul>{% for error in form.subjectname.errors %}<li>{{ error }}</li>{% endfor %}</ul>
+        {% endif %}
+
+        {{ form.submit(class="shine-button") }}
+    </form>
+
+    <h2>{{ form.subjectname.data }}</h2>
+
+    <table>
+			<thead>
+				<tr>
+					<th>Region</th>
+					<th>Average Score</th>
+				</tr>
+			</thead>
+
+			<tbody>
+				{% for statistic in statistics %}
+					<tr>
+						<td>{{ statistic.regname }}</td>
+						<td>{{ "%.2f" % statistic.ball100 }}</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+</body>
+</html>
