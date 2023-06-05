@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+	<head>
+    <style type="text/css">
+      .registration_form_fields {
+      background-color: white;
+      font-size: 1.3rem;
+      width: 40%;
+      height: 40%;
+      display: inline-block;
+      padding: 0.4rem 0.75rem;
+      font-weight: 600;
+      line-height: 1.5;
+      color: black;
+    }
+    .shine-button {
+      text-decoration: none;
+      display: inline-block;
+      padding: 10px 30px;
+      position: relative;
+      color: #000000;
+      font-size: 11px;
+      font-weight: 400;
+    }
+
+
+
+    #header .add-place-button {
+      background: white;
+      text-decoration: none;
+      display: inline-block;
+      padding: 16px 22px;
+      color: #000000;
+      font-size: 11px;
+      font-weight: 600;
+    }
+
+
+    body {
+      background: rgb(255, 255, 255);
+      font-size: 11px;
+      font-weight: 600;
+    }
+		</style>
+		<title>
+			Add student
+		</title>
+	</head>
+	<body>
+		<h3>Form to add a student</h3>
+		<hr/>
+
+		{%- for category, message in get_flashed_messages(with_categories = true) %}
+			<div class = "alert alert-danger" style="color:red; font-size:25px;">
+				{{ message }}
+			</div>
+		{%- endfor %}
+
+		<form action="{{ request.path }}" method="POST">
+
+
+		{{ form.hidden_tag() }}
+
+		<div style="font-size: 20px; color: rgb(12, 26, 224)">
+            {{ form.examyear.label }} <br>
+            {{ form.examyear(class="registration_form_fields") }}
+        </div>
+        {% if form.examyear.errors %}
+            <ul>{% for error in form.examyear.errors %}<li>{{ error }}</li>{% endfor %}</ul>
+        {% endif %}
+
+		<div style="font-size: 20px; color: rgb(12, 26, 224)">
+            {{ form.birthdate.label }} <br>
+            {{ form.birthdate(class="registration_form_fields") }}
+        </div>
+        {% if form.birthdate.errors %}
+            <ul>{% for error in form.birthdate.errors %}<li>{{ error }}</li>{% endfor %}</ul>
+        {% endif %}
+
+
+		<div style="font-size: 20px; color: rgb(12, 26, 224)">
+            {{ form.sex.label }} <br>
+            {{ form.sex(class="registration_form_fields") }}
+        </div>
+        {% if form.sex.errors %}
+            <ul>{% for error in form.sex.errors %}<li>{{ error }}</li>{% endfor %}</ul>
+        {% endif %}
+
+        <div style="font-size: 20px; color: rgb(12, 26, 224)">
+            {{ form.place_id.label }} <br>
+            {{ form.place_id(class="registration_form_fields") }}
+        </div>
+        {% if form.place_id.errors %}
+            <ul>{% for error in form.place_id.errors %}<li>{{ error }}</li>{% endfor %}</ul>
+        {% endif %}
+
+
+		<div style="font-size: 20px; color: rgb(12, 26, 224)">
+            {{ form.regtypename.label }} <br>
+            {{ form.regtypename(class="registration_form_fields") }}
+        </div>
+        {% if form.regtypename.errors %}
+            <ul>{% for error in form.regtypename.errors %}<li>{{ error }}</li>{% endfor %}</ul>
+        {% endif %}
+
+
+		<div style="font-size: 20px; color: greenrgb(12, 26, 224)">
+            {{ form.classprofile.label }} <br>
+            {{ form.classprofile(class="registration_form_fields") }}
+        </div>
+        {% if form.classprofile.errors %}
+            <ul>{% for error in form.classprofile.errors %}<li>{{ error }}</li>{% endfor %}</ul>
+        {% endif %}
+
+		<div style="font-size: 20px; color: rgb(12, 26, 224)">
+            {{ form.classlang.label }} <br>
+            {{ form.classlang(class="registration_form_fields") }}
+        </div>
+        {% if form.classlang.errors %}
+            <ul>{% for error in form.classlang.errors %}<li>{{ error }}</li>{% endfor %}</ul>
+        {% endif %}
+
+        <div style="font-size: 20px; color: rgb(12, 26, 224)">
+            {{ form.school_id.label }} <br>
+            {{ form.school_id(class="registration_form_fields") }}
+        </div>
+        {% if form.school_id.errors %}
+            <ul>{% for error in form.school_id.errors %}<li>{{ error }}</li>{% endfor %}</ul>
+        {% endif %}
+
+			{{ form.submit(class="shine-button") }}
+		</form>
+        <p>
+        <a href="{{ url_for('showstudents', page=1) }}" class="shine-button">Return to the table</a></p>
+	</body>
+</html>

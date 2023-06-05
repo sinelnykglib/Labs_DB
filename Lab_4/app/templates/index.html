@@ -1,0 +1,55 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <style type="text/css">
+      html,
+      body {
+        background: rgb(255, 255, 255);
+        font-size: 11px;
+        text-align: center;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        background-color: rgb(255, 255, 255);
+      }
+
+      .floating-button {
+        text-decoration: none;
+        display: block;
+        width: 600px;
+        height: 45px;
+        line-height: 45px;
+        font-size: 31px;
+        text-align: center;
+        color: #ffffff;
+        background: rgb(5, 9, 226);
+        box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+        margin-bottom: 10px;
+      }
+    </style>
+    <title>Main page</title>
+  </head>
+  <body>
+    <a href="{{url_for('showschools', page=1)}}" class="floating-button"
+      >School</a>
+    <a href="{{url_for('showplaces', page=1)}}" class="floating-button"
+      >Place</a>
+    <a href="{{url_for('showstudents', page=1)}}" class="floating-button"
+      >Student</a>
+    <a href="{{url_for('showtests', page=1)}}" class="floating-button"
+      >Test</a>
+    <a href="{{url_for('showsubjects', page=1)}}" class="floating-button"
+      >Subject</a>
+      <a href="{{url_for('showstatistics', page=1)}}" class="floating-button"
+      >Statistic</a>
+      <a href="{{url_for('formtests_1',page=1)}}" class="floating-button"
+      >Test_m</a>
+  </body>
+</html>

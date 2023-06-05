@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <style type="text/css">
+      .page-link {
+        background: rgb(255, 255, 255);
+        display: inline-block;
+        padding: 8px 12px;
+        font-size: 11px;
+        font-weight: 600;
+        color: white;
+        text-decoration: none;
+      }
+
+
+      .shine-button {
+        text-decoration: none;
+        display: inline-block;
+        padding: 10px 30px;
+        color: #000000;
+        font-size: 11px;
+      }
+
+
+      #header {
+        padding: 12px;
+        text-align: left;
+        color: rgb(12, 27, 233);
+        font-size: 20px;
+      }
+
+
+      #header .add-place-button {
+        background: white;
+        padding: 16px 22px;
+        color: #000000;
+        font-size: 11px;
+        font-weight: 800;
+      }
+
+
+      body {
+        background: rgb(250, 250, 250);
+        font-size: 11px;
+        font-weight: 600;
+      }
+    </style>
+    <title>Subject</title>
+  </head>
+  <body>
+    <div id="header">
+      <h3>Subject table</h3>
+      <br /><br />
+      <a href="{{ url_for('addsubjects') }}" class="add-place-button">Add subject</a
+      ><br /><br>
+      <a href="http://localhost:5000" class="add-place-button">Menu</a>
+    </div>
+
+    {%- for message in get_flashed_messages() %} {{ message }} {%- endfor %}
+
+    <br /><br /><br />
+
+    <table>
+      <tr>
+        <th style="font-size: 14px">Subject</th>
+        <th style="font-size: 14px">Delete</th>
+        <th style="font-size: 14px">Update</th>
+			<tbody>
+				{% for subject in subjects %}
+					<tr>
+						<td>{{ subject.subjectname }}</td>
+						<th>
+							<form action="/subjects/delete" method="POST">
+								<input type="hidden" name="subject_id" value="{{ subject.subject_id }}"/>
+								<input type="submit" name="delete" value="Delete" class="shine-button"/>
+							</form>
+						</th>
+						<th>
+							<form action="/subjects/update" method="GET">
+								<input type="hidden" name="subject_id" value="{{ subject.subject_id }}"/>
+								<input type="submit" name="update" value="Update" class="shine-button"/>
+							</form>
+						</th>
+					</tr>
+				{% endfor %}
+			</tbody>
+    </table>
+    <br />
+    <a href="{{ url_for('showsubjects', page=1) }}" class="shine-button">1</a>
+    <a href="{{ url_for('showsubjects', page=2) }}" class="shine-button">2</a>
+    <a href="{{ url_for('showsubjects', page=3) }}" class="shine-button">3</a>
+  </body>
+</html>
